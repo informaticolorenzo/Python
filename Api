@@ -1,0 +1,27 @@
+import requests
+
+def obtener_datos_de_api(api_url):
+    try:
+        # Realizar la solicitud a la API
+        respuesta = requests.get(api_url)
+
+        # Verificar si la solicitud fue exitosa (código de estado 200)
+        if respuesta.status_code == 200:
+            # Convertir la respuesta a formato JSON
+            datos_json = respuesta.json()
+            
+            # Mostrar los datos obtenidos
+            print("Datos de la API:")
+            print(datos_json['value'])
+        else:
+            # Mostrar un mensaje de error si la solicitud no fue exitosa
+            print(f"Error al obtener datos de la API. Código de estado: {respuesta.status_code}")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+# URL de la API de ejemplo (puedes reemplazarla con la URL de la API que desees utilizar)
+api_url_ejemplo = "https://api.chucknorris.io/jokes/random"
+
+# Llamar a la función para obtener y mostrar los datos de la API
+obtener_datos_de_api(api_url_ejemplo)
